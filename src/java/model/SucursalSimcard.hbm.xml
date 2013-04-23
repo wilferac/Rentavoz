@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 23/04/2013 02:19:36 PM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+    <class name="model.SucursalSimcard" table="SucursalSimcard" catalog="Minutos">
+        <id name="idSucSim" type="java.lang.Integer">
+            <column name="idSucSim" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="sucursal" class="model.Sucursal" fetch="select">
+            <column name="idSucursalLinea" not-null="true" />
+        </many-to-one>
+        <many-to-one name="simcard" class="model.Simcard" fetch="select">
+            <column name="idSimcard" not-null="true" />
+        </many-to-one>
+        <property name="fecha" type="timestamp">
+            <column name="fecha" length="19" not-null="true" />
+        </property>
+        <property name="sucSimObservacion" type="string">
+            <column name="sucSimObservacion" length="70" />
+        </property>
+        <property name="sucSimEstado" type="int">
+            <column name="sucSimEstado" not-null="true">
+                <comment>me indica si la asignacion esta o no activa 1 = activo 0 = inactivo</comment>
+            </column>
+        </property>
+    </class>
+</hibernate-mapping>

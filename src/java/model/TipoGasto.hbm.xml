@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 23/04/2013 02:19:36 PM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+    <class name="model.TipoGasto" table="TipoGasto" catalog="Minutos">
+        <id name="idTipoGasto" type="java.lang.Integer">
+            <column name="idTipoGasto" />
+            <generator class="identity" />
+        </id>
+        <property name="tgastoNombre" type="string">
+            <column name="tGastoNombre" length="45" not-null="true" />
+        </property>
+        <property name="tgastoDescripcion" type="string">
+            <column name="tGastoDescripcion" length="70" />
+        </property>
+        <set name="gastos" inverse="true">
+            <key>
+                <column name="idTipoGasto" not-null="true" />
+            </key>
+            <one-to-many class="model.Gasto" />
+        </set>
+    </class>
+</hibernate-mapping>

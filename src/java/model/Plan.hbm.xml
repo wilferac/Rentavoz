@@ -1,0 +1,53 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 23/04/2013 02:19:36 PM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+    <class name="model.Plan" table="Plan" catalog="Minutos">
+        <id name="idPlan" type="java.lang.Integer">
+            <column name="idPlan" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="tercero" class="model.Tercero" fetch="select">
+            <column name="idTecero" not-null="true" />
+        </many-to-one>
+        <many-to-one name="operador" class="model.Operador" fetch="select">
+            <column name="idOperador" not-null="true" />
+        </many-to-one>
+        <property name="plaNombre" type="string">
+            <column name="plaNombre" length="45" not-null="true" />
+        </property>
+        <property name="plaCantidadMinutos" type="int">
+            <column name="plaCantidadMinutos" not-null="true" />
+        </property>
+        <property name="plaCostoMinuto" type="int">
+            <column name="plaCostoMinuto" not-null="true" />
+        </property>
+        <property name="plaCostoMin" type="int">
+            <column name="plaCostoMin" not-null="true" />
+        </property>
+        <property name="plaCostoMax" type="int">
+            <column name="plaCostoMax" not-null="true" />
+        </property>
+        <property name="plaFechaVenc" type="date">
+            <column name="plaFechaVenc" length="10" not-null="true">
+                <comment>la fecha de vencimiento del plan</comment>
+            </column>
+        </property>
+        <property name="fecha" type="timestamp">
+            <column name="fecha" length="19" not-null="true" />
+        </property>
+        <set name="convenios" inverse="true">
+            <key>
+                <column name="idPlan" not-null="true" />
+            </key>
+            <one-to-many class="model.Convenio" />
+        </set>
+        <set name="planLineas" inverse="true">
+            <key>
+                <column name="idPlan" not-null="true" />
+            </key>
+            <one-to-many class="model.PlanLinea" />
+        </set>
+    </class>
+</hibernate-mapping>

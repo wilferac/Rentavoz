@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-reverse-engineering PUBLIC "-//Hibernate/Hibernate Reverse Engineering DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-reverse-engineering-3.0.dtd">
+<hibernate-reverse-engineering>
+  <schema-selection match-catalog="Minutos"/>
+  <table-filter match-name="SucursalSimcard"/>
+  <table-filter match-name="Empresa"/>
+  <table-filter match-name="TipoGasto"/>
+  <table-filter match-name="Pago"/>
+  <table-filter match-name="Departamento"/>
+  <table-filter match-name="Plan"/>
+  <table-filter match-name="Linea"/>
+  <table-filter match-name="VentaLinea"/>
+  <table-filter match-name="Convenio"/>
+  <table-filter match-name="Cuentas"/>
+  <table-filter match-name="TerceroVenta"/>
+  <table-filter match-name="Gasto"/>
+  <table-filter match-name="Venta"/>
+  <table-filter match-name="Rol"/>
+  <table-filter match-name="Operador"/>
+  <table-filter match-name="Roles"/>
+  <table-filter match-name="EstadoLinea"/>
+  <table-filter match-name="SucursalLinea"/>
+  <table-filter match-name="SucursalTercero"/>
+  <table-filter match-name="Sucursal"/>
+  <table-filter match-name="Simcard"/>
+  <table-filter match-name="Ciudad"/>
+  <table-filter match-name="Tercero"/>
+  <table-filter match-name="PlanLinea"/>
+  <table-filter match-name="TipoPago"/>
+</hibernate-reverse-engineering>

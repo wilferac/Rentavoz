@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 23/04/2013 02:19:36 PM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+    <class name="model.Cuentas" table="Cuentas" catalog="Minutos">
+        <id name="idCuentas" type="java.lang.Integer">
+            <column name="idCuentas" />
+            <generator class="identity" />
+        </id>
+        <property name="cueNombre" type="string">
+            <column name="cueNombre" length="30" not-null="true" />
+        </property>
+        <property name="cueNumero" type="string">
+            <column name="cueNumero" length="20" not-null="true" />
+        </property>
+        <property name="cueSaldo" type="big_decimal">
+            <column name="cueSaldo" precision="11" not-null="true" />
+        </property>
+        <set name="pagos" inverse="true">
+            <key>
+                <column name="idCuentas" not-null="true" />
+            </key>
+            <one-to-many class="model.Pago" />
+        </set>
+        <set name="gastos" inverse="true">
+            <key>
+                <column name="idCuentas" not-null="true" />
+            </key>
+            <one-to-many class="model.Gasto" />
+        </set>
+    </class>
+</hibernate-mapping>

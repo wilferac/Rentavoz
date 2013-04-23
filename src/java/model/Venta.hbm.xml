@@ -1,0 +1,48 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 23/04/2013 02:19:36 PM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+    <class name="model.Venta" table="Venta" catalog="Minutos">
+        <id name="idVenta" type="java.lang.Integer">
+            <column name="idVenta" />
+            <generator class="identity" />
+        </id>
+        <property name="venFecha" type="date">
+            <column name="venFecha" length="10" not-null="true">
+                <comment>fecha de generacion que da el usuario. (esto no es legal?)</comment>
+            </column>
+        </property>
+        <property name="fecha" type="timestamp">
+            <column name="fecha" length="19" not-null="true" />
+        </property>
+        <property name="venDomicilio" type="big_decimal">
+            <column name="venDomicilio" precision="8" not-null="true">
+                <comment>el costo del domicilio</comment>
+            </column>
+        </property>
+        <property name="venSaldo" type="big_decimal">
+            <column name="venSaldo" precision="10" not-null="true">
+                <comment>el monto que falta por cobrar en la factura. no es el total de la venta.</comment>
+            </column>
+        </property>
+        <set name="ventaLineas" inverse="true">
+            <key>
+                <column name="idVenta" not-null="true" />
+            </key>
+            <one-to-many class="model.VentaLinea" />
+        </set>
+        <set name="terceroVentas" inverse="true">
+            <key>
+                <column name="idVenta" not-null="true" />
+            </key>
+            <one-to-many class="model.TerceroVenta" />
+        </set>
+        <set name="pagos" inverse="true">
+            <key>
+                <column name="idVenta" not-null="true" />
+            </key>
+            <one-to-many class="model.Pago" />
+        </set>
+    </class>
+</hibernate-mapping>

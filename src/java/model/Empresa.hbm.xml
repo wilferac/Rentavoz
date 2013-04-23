@@ -1,0 +1,44 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 23/04/2013 02:19:36 PM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+    <class name="model.Empresa" table="Empresa" catalog="Minutos">
+        <id name="idEmpresa" type="int">
+            <column name="idEmpresa" />
+            <generator class="assigned" />
+        </id>
+        <property name="empNombre" type="string">
+            <column name="empNombre" length="45" not-null="true" />
+        </property>
+        <property name="empNit" type="string">
+            <column name="empNit" length="15" not-null="true" />
+        </property>
+        <property name="empDireccion" type="string">
+            <column name="empDireccion" length="45" not-null="true" />
+        </property>
+        <property name="empTelefono" type="string">
+            <column name="empTelefono" length="45" />
+        </property>
+        <property name="empContacto" type="string">
+            <column name="empContacto" length="45" />
+        </property>
+        <property name="empAlias" type="string">
+            <column name="empAlias" length="30" not-null="true">
+                <comment>el alias de la empresa a fin de ocultar su identidad</comment>
+            </column>
+        </property>
+        <set name="convenios" inverse="true">
+            <key>
+                <column name="idEmpresa" not-null="true" />
+            </key>
+            <one-to-many class="model.Convenio" />
+        </set>
+        <set name="lineas" inverse="true">
+            <key>
+                <column name="idEmpresa" not-null="true" />
+            </key>
+            <one-to-many class="model.Linea" />
+        </set>
+    </class>
+</hibernate-mapping>

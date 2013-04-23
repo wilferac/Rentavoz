@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 23/04/2013 02:19:36 PM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+    <class name="model.Pago" table="Pago" catalog="Minutos">
+        <id name="idPago" type="java.lang.Integer">
+            <column name="idPago" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="cuentas" class="model.Cuentas" fetch="select">
+            <column name="idCuentas" not-null="true" />
+        </many-to-one>
+        <many-to-one name="venta" class="model.Venta" fetch="select">
+            <column name="idVenta" not-null="true" />
+        </many-to-one>
+        <many-to-one name="tipoPago" class="model.TipoPago" fetch="select">
+            <column name="idTipoPago" not-null="true" />
+        </many-to-one>
+        <property name="fecha" type="timestamp">
+            <column name="fecha" length="19" not-null="true" />
+        </property>
+        <property name="pagValor" type="big_decimal">
+            <column name="pagValor" precision="11" not-null="true" />
+        </property>
+        <property name="pagFechaProx" type="date">
+            <column name="pagFechaProx" length="10">
+                <comment>esta es la fecha para la que el cliente programa el siguiente pago. esta fecha es importante ya que la tendre en cuenta para mandar alertas de posible
+                mora.</comment>
+            </column>
+        </property>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,54 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 23/04/2013 02:19:36 PM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+    <class name="model.Tercero" table="Tercero" catalog="Minutos">
+        <id name="idTecero" type="java.lang.Integer">
+            <column name="idTecero" />
+            <generator class="identity" />
+        </id>
+        <property name="terNombre" type="string">
+            <column name="terNombre" length="45" not-null="true" />
+        </property>
+        <property name="terApellidos" type="string">
+            <column name="terApellidos" length="45" />
+        </property>
+        <property name="terTelefono" type="string">
+            <column name="terTelefono" length="45" not-null="true" />
+        </property>
+        <property name="terDireccion" type="string">
+            <column name="terDireccion" length="45" not-null="true" />
+        </property>
+        <property name="terDocumento" type="int">
+            <column name="terDocumento" not-null="true" unique="true" />
+        </property>
+        <property name="terClave" type="string">
+            <column name="terClave" length="60" not-null="true" />
+        </property>
+        <set name="sucursalTerceros" inverse="true">
+            <key>
+                <column name="idTecero" not-null="true" />
+            </key>
+            <one-to-many class="model.SucursalTercero" />
+        </set>
+        <set name="plans" inverse="true">
+            <key>
+                <column name="idTecero" not-null="true" />
+            </key>
+            <one-to-many class="model.Plan" />
+        </set>
+        <set name="roleses" inverse="true">
+            <key>
+                <column name="idTecero" not-null="true" />
+            </key>
+            <one-to-many class="model.Roles" />
+        </set>
+        <set name="terceroVentas" inverse="true">
+            <key>
+                <column name="idTecero" not-null="true" />
+            </key>
+            <one-to-many class="model.TerceroVenta" />
+        </set>
+    </class>
+</hibernate-mapping>

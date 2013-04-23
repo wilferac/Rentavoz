@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 23/04/2013 02:19:36 PM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+    <class name="model.Convenio" table="Convenio" catalog="Minutos">
+        <id name="idConvenio" type="java.lang.Integer">
+            <column name="idConvenio" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="empresa" class="model.Empresa" fetch="select">
+            <column name="idEmpresa" not-null="true" />
+        </many-to-one>
+        <many-to-one name="plan" class="model.Plan" fetch="select">
+            <column name="idPlan" not-null="true" />
+        </many-to-one>
+        <property name="conComision" type="short">
+            <column name="conComision" precision="4" scale="0" not-null="true">
+                <comment>es el valor de monto que se pacta por cada linea dicho plan.</comment>
+            </column>
+        </property>
+        <property name="conFechaInicio" type="date">
+            <column name="conFechaInicio" length="10" not-null="true">
+                <comment>la fecha de inicio del convenio</comment>
+            </column>
+        </property>
+        <property name="conValorFijo" type="short">
+            <column name="conValorFijo" precision="4" scale="0" not-null="true">
+                <comment>es el valor de la factura??</comment>
+            </column>
+        </property>
+        <property name="conEstado" type="int">
+            <column name="conEstado" not-null="true">
+                <comment>el convenio esta activo o inactivo</comment>
+            </column>
+        </property>
+    </class>
+</hibernate-mapping>

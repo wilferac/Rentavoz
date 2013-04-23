@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 23/04/2013 02:19:36 PM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+    <class name="model.Rol" table="Rol" catalog="Minutos">
+        <id name="idRol" type="java.lang.Integer">
+            <column name="idRol" />
+            <generator class="identity" />
+        </id>
+        <property name="rolNombre" type="string">
+            <column name="rolNombre" length="25" not-null="true" />
+        </property>
+        <property name="rolDescripcion" type="string">
+            <column name="rolDescripcion" length="70" />
+        </property>
+        <set name="roleses" inverse="true">
+            <key>
+                <column name="idRol" not-null="true" />
+            </key>
+            <one-to-many class="model.Roles" />
+        </set>
+    </class>
+</hibernate-mapping>

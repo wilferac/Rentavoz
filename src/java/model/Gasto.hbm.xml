@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 23/04/2013 02:19:36 PM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+    <class name="model.Gasto" table="Gasto" catalog="Minutos">
+        <id name="idGasto" type="java.lang.Integer">
+            <column name="idGasto" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="cuentas" class="model.Cuentas" fetch="select">
+            <column name="idCuentas" not-null="true" />
+        </many-to-one>
+        <many-to-one name="tipoGasto" class="model.TipoGasto" fetch="select">
+            <column name="idTipoGasto" not-null="true" />
+        </many-to-one>
+        <property name="gasValor" type="big_decimal">
+            <column name="gasValor" precision="11" not-null="true" />
+        </property>
+        <property name="gasFecha" type="date">
+            <column name="gasFecha" length="10" not-null="true">
+                <comment>fecha enviada por el usuario</comment>
+            </column>
+        </property>
+        <property name="fecha" type="timestamp">
+            <column name="fecha" length="19" not-null="true">
+                <comment>fecha del sistema</comment>
+            </column>
+        </property>
+        <property name="gasObservacion" type="string">
+            <column name="gasObservacion" length="70" />
+        </property>
+    </class>
+</hibernate-mapping>

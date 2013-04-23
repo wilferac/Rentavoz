@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 23/04/2013 02:19:36 PM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+    <class name="model.Sucursal" table="Sucursal" catalog="Minutos">
+        <id name="idSucursal" type="java.lang.Integer">
+            <column name="idSucursal" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="ciudad" class="model.Ciudad" fetch="select">
+            <column name="idCiudad" not-null="true" />
+        </many-to-one>
+        <property name="sucNombre" type="string">
+            <column name="sucNombre" length="45" not-null="true" />
+        </property>
+        <property name="sucDireccion" type="string">
+            <column name="sucDireccion" length="45" not-null="true" />
+        </property>
+        <property name="sucTelefono" type="string">
+            <column name="sucTelefono" length="45" not-null="true" />
+        </property>
+        <property name="sucEstado" type="int">
+            <column name="sucEstado" not-null="true" />
+        </property>
+        <set name="sucursalTerceros" inverse="true">
+            <key>
+                <column name="idSucursal" not-null="true" />
+            </key>
+            <one-to-many class="model.SucursalTercero" />
+        </set>
+        <set name="sucursalLineas" inverse="true">
+            <key>
+                <column name="idSucursal" not-null="true" />
+            </key>
+            <one-to-many class="model.SucursalLinea" />
+        </set>
+        <set name="sucursalSimcards" inverse="true">
+            <key>
+                <column name="idSucursalLinea" not-null="true" />
+            </key>
+            <one-to-many class="model.SucursalSimcard" />
+        </set>
+    </class>
+</hibernate-mapping>

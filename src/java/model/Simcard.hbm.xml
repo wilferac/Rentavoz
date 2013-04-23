@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 23/04/2013 02:19:36 PM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+    <class name="model.Simcard" table="Simcard" catalog="Minutos">
+        <id name="idSimcard" type="java.lang.Integer">
+            <column name="idSimcard" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="linea" class="model.Linea" fetch="select">
+            <column name="idLinea" not-null="true">
+                <comment>la linea que se le asigno a la sim</comment>
+            </column>
+        </many-to-one>
+        <property name="simIccid" type="string">
+            <column name="simIccid" length="40" not-null="true">
+                <comment>el numero unico que identifica a la sim</comment>
+            </column>
+        </property>
+        <property name="simEstado" type="int">
+            <column name="simEstado" not-null="true">
+                <comment>indica si la simcard esta en servicio o no. si esta inactiva nunca va a volver a estar activa 1 = activo 0 = inactivo</comment>
+            </column>
+        </property>
+        <property name="fecha" type="timestamp">
+            <column name="fecha" length="19" not-null="true" />
+        </property>
+        <set name="sucursalSimcards" inverse="true">
+            <key>
+                <column name="idSimcard" not-null="true" />
+            </key>
+            <one-to-many class="model.SucursalSimcard" />
+        </set>
+    </class>
+</hibernate-mapping>
