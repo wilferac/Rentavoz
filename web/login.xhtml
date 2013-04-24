@@ -9,30 +9,28 @@
     <body>
 
         <ui:composition template="./WEB-INF/Template.xhtml">
-
-            <ui:define name="top">
-                top
-            </ui:define>
-
+            
+            
             <ui:define name="left">
-                left
+                
             </ui:define>
 
             <ui:define name="content">
+                <div id="loginFrom">
                 <h:form id="form">  
 
-                    <p:panel id="panel" header="New Person">  
+                    <p:panel id="panel" header="Entrada al Sistema">  
 
                         <p:messages id="msgs"/>  
 
                         <h:panelGrid columns="3">  
-                            <h:outputLabel for="firstname" value="Firstname: *" />  
+                            <h:outputLabel for="firstname" value="Usuario:* " />  
                             <p:inputText id="firstname" value="#{LoginBean.loginTer.terDocumento}" required="true" label="Firstname">  
                                 <f:validateLength minimum="2" />  
                             </p:inputText>  
                             <p:message for="firstname" display="icon"/>  
 
-                            <h:outputLabel for="surname" value="Surname: *" />  
+                            <h:outputLabel for="surname" value="Contraseña:*" />  
                             <p:inputText id="surname" value="#{LoginBean.loginTer.terClave}" label="Surname" required="true">  
                                 <f:validateLength minimum="2" />  
                                 <p:ajax update="msgSurname" event="keyup" />  
@@ -41,15 +39,13 @@
 
                         </h:panelGrid>  
 
-                        <p:commandButton id="btn" value="Save" update="panel" action="#{LoginBean.login}"/>  
+                        <p:commandButton id="btn" value="Entrar" update="panel" action="#{LoginBean.login}"/>  
                     </p:panel>  
 
                 </h:form> 
+                    </div>
             </ui:define>
 
-            <ui:define name="bottom">
-                bottom
-            </ui:define>
 
         </ui:composition>
 

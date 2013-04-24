@@ -1,0 +1,21 @@
+
+<h:form xmlns:h="http://java.sun.com/jsf/html"
+        xmlns="http://www.w3.org/1999/xhtml"
+        xmlns:p="http://primefaces.org/ui">  
+
+    <p:growl id="messages"/>  
+
+    
+    <p:tieredMenu style="width:120px">  
+        <p:menuitem value="Inicio" actionListener="#{MenuBean.delete}" update="messages" icon="ui-icon-disk" />  
+
+        <p:submenu label="Principal" >  
+            <p:menuitem value="Save" actionListener="#{MenuBean.delete}" update="messages" icon="ui-icon-disk" />  
+            <p:menuitem value="Update" actionListener="#{MenuBean.update}" update="messages" icon="ui-icon-arrowrefresh-1-w" />  
+        </p:submenu>  
+
+
+    </p:tieredMenu>  
+</h:form> 
+
+
