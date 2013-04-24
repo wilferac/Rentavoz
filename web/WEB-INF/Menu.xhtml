@@ -1,5 +1,5 @@
 
-<h:form xmlns:h="http://java.sun.com/jsf/html"
+<h:form rendered="#{LoginBean.isLogin}"  xmlns:h="http://java.sun.com/jsf/html"
         xmlns="http://www.w3.org/1999/xhtml"
         xmlns:p="http://primefaces.org/ui">  
 
@@ -7,8 +7,13 @@
 
     
     <p:tieredMenu style="width:120px">  
-        <p:menuitem value="Inicio" actionListener="#{MenuBean.delete}" update="messages" icon="ui-icon-disk" />  
+        <p:menuitem value="Inicio" actionListener="#{MenuBean.delete}" update="messages" icon="ui-icon-home" />  
 
+        <p:submenu rendered="#{LoginBean.admin}" label="Agregar" >  
+            <p:menuitem value="Tercero" actionListener="#{MenuBean.goCreateTercero}" update="messages" icon="ui-icon-person" />  
+        </p:submenu> 
+        
+        
         <p:submenu rendered="#{LoginBean.admin}" label="Principal" >  
             <p:menuitem value="Save" actionListener="#{MenuBean.delete}" update="messages" icon="ui-icon-disk" />  
             <p:menuitem value="Update" actionListener="#{MenuBean.update}" update="messages" icon="ui-icon-arrowrefresh-1-w" />  

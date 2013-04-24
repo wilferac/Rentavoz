@@ -9,11 +9,7 @@
     <body>
 
         <ui:composition template="./WEB-INF/Template.xhtml">
-            
-            
-            <ui:define name="left">
-                
-            </ui:define>
+
 
             <ui:define name="content">
                 <div id="loginFrom">
@@ -31,10 +27,10 @@
                             <p:message for="firstname" display="icon"/>  
 
                             <h:outputLabel for="surname" value="Contraseña:*" />  
-                            <p:inputText id="surname" value="#{LoginBean.loginTer.terClave}" label="Surname" required="true">  
+                            <p:password id="surname" value="#{LoginBean.loginTer.terClave}" label="Surname" required="true">  
                                 <f:validateLength minimum="2" />  
                                 <p:ajax update="msgSurname" event="keyup" />  
-                            </p:inputText>  
+                            </p:password>  
                             <p:message for="surname" id="msgSurname" display="icon"/>  
 
                         </h:panelGrid>  

@@ -149,6 +149,18 @@ public class LoginBean
     {
         this.cliente = cliente;
     }
+
+    public boolean isIsLogin()
+    {
+        return isLogin;
+    }
+
+    public void setIsLogin(boolean isLogin)
+    {
+        this.isLogin = isLogin;
+    }
+    
+    
     
     
 }

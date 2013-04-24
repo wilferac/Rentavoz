@@ -19,6 +19,11 @@ public class MenuBean {
     
     public String goIndex()
     {
+        return "login.xhtml?faces-redirect=true";
+    }
+    
+    public String goCreateTercero()
+    {
         return "index";
     }
 
