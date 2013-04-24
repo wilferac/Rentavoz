@@ -23,39 +23,24 @@ import org.primefaces.context.RequestContext;
  */
 @ManagedBean(name = "LoginBean")
 @SessionScoped
-public class LoginBean {
+public class LoginBean
+{
 
     Tercero loginTer;
     String rolRequired;
+    boolean admin, usuario, cliente;
 
-    public String getRolRequired() {
-        return rolRequired;
-    }
-
-    public void setRolRequired(String rolRequired) {
-        this.rolRequired = rolRequired;
-    }
-    
-    
-
-    public Tercero getLoginTer() {
-        if (loginTer == null) {
-            loginTer = new Tercero();
-        }
-        return loginTer;
-    }
-
-    public void setLoginTer(Tercero loginTer) {
-        this.loginTer = loginTer;
-    }
-
+    boolean isLogin;
     /**
      * Creates a new instance of LoginBean
      */
-    public LoginBean() {
+    public LoginBean()
+    {
+        isLogin=false;
     }
 
-    public String login() {
+    public String login()
+    {
         RequestContext context = RequestContext.getCurrentInstance();
         FacesMessage msg = null;
         boolean loggedIn = false;
@@ -63,11 +48,15 @@ public class LoginBean {
         TerceroDao daoTer = new TerceroDao();
         loginTer = daoTer.buscarPorTercero(loginTer);
 
-        if (loginTer != null) {
+        if (loginTer != null)
+        {
             loggedIn = true;
             //msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Welcome", loginTer.getTerDocumento() + "");
-            return "index";
-        } else {
+            isLogin=true;
+            checkRol();
+            return "index.xhtml?faces-redirect=true";
+        } else
+        {
             loggedIn = false;
             msg = new FacesMessage(FacesMessage.SEVERITY_WARN, "Login Error", "Invalid credentials ");
         }
@@ -77,29 +66,89 @@ public class LoginBean {
         return "";
     }
 
-    public boolean checkRol() {
-        
+    public void checkRol()
+    {
+
         System.out.println(rolRequired);
-       // Iterator<Roles> iterator = loginTer.getRoleses().iterator();
-        
-        System.out.println("el tamnanio "+loginTer.getRoleses().size());
-        
-        for(Roles rol :loginTer.getRoleses() )
+        // Iterator<Roles> iterator = loginTer.getRoleses().iterator();
+
+        System.out.println("el tamnanio " + loginTer.getRoleses().size());
+
+        for (Roles rol : loginTer.getRoleses())
         {
-            //System.out.println(rol.getRol().getRolNombre());
-            if (rol.getRol().getRolNombre().compareTo(rolRequired) == 0) {
-                return true;
+            int num = rol.getRolId();
+            System.out.println("el numero: "+num);
+            if (num == 1)
+            {
+                this.admin = true;
+            } else if (num == 2)
+            {
+                this.usuario = true;
+            } else if (num == 3)
+            {
+                this.cliente = true;
             }
         }
-        
-//        while (iterator.hasNext()) {
-//            Roles setElement = iterator.next();
-//            System.out.println(setElement.getRol().getRolNombre());
-//            if (setElement.getRol().getRolNombre().compareTo(value) == 0) {
-//                return true;
-//            }
-//        }
-
-        return false;
     }
+    
+    public String logout() {
+        FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
+        return "login.xhtml?faces-redirect=true";
+    }
+
+    public String getRolRequired()
+    {
+        return rolRequired;
+    }
+
+    public void setRolRequired(String rolRequired)
+    {
+        this.rolRequired = rolRequired;
+    }
+
+    public Tercero getLoginTer()
+    {
+        if (loginTer == null)
+        {
+            loginTer = new Tercero();
+        }
+        return loginTer;
+    }
+
+    public void setLoginTer(Tercero loginTer)
+    {
+        this.loginTer = loginTer;
+    }
+
+    public boolean isAdmin()
+    {
+        return admin;
+    }
+
+    public void setAdmin(boolean admin)
+    {
+        this.admin = admin;
+    }
+
+    public boolean isUsuario()
+    {
+        return usuario;
+    }
+
+    public void setUsuario(boolean usuario)
+    {
+        this.usuario = usuario;
+    }
+
+    public boolean isCliente()
+    {
+        return cliente;
+    }
+
+    public void setCliente(boolean cliente)
+    {
+        this.cliente = cliente;
+    }
+    
+    
 }

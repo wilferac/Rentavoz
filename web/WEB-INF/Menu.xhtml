@@ -9,11 +9,12 @@
     <p:tieredMenu style="width:120px">  
         <p:menuitem value="Inicio" actionListener="#{MenuBean.delete}" update="messages" icon="ui-icon-disk" />  
 
-        <p:submenu label="Principal" >  
+        <p:submenu rendered="#{LoginBean.admin}" label="Principal" >  
             <p:menuitem value="Save" actionListener="#{MenuBean.delete}" update="messages" icon="ui-icon-disk" />  
             <p:menuitem value="Update" actionListener="#{MenuBean.update}" update="messages" icon="ui-icon-arrowrefresh-1-w" />  
         </p:submenu>  
 
+        <p:menuitem value="Salir" action="#{LoginBean.logout}" update="messages" icon="ui-icon-close" />  
 
     </p:tieredMenu>  
 </h:form> 
