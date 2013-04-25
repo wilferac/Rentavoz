@@ -5,6 +5,7 @@
 package dao;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 import model.Rol;
 import model.Roles;
@@ -67,5 +68,16 @@ public class TerceroDao
             //System.out.println("Error al Insertar: " + e.getMessage());
         }
         
+    }
+    
+    /**
+     * obtengo todos los tercero que estan en el sistema :D
+     *
+     */
+    public List<Tercero> getAll()
+    {
+        Session se = HibernateUtil.getSessionFactory().openSession();
+        Query que = se.createQuery("from Tercero");
+        return que.list();
     }
 }
