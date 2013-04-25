@@ -1,0 +1,84 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <body>
+
+        <ui:composition template="./../WEB-INF/Template.xhtml">
+
+
+
+            <ui:define name="content">
+
+
+                <h:form id="form">  
+                    
+
+                    <p:growl id="msgs" showDetail="true" />  
+                    <p:commandButton id="selectButton" value="Agregar" update=":form:displayGuardar" oncomplete="newDialog.show()" icon="ui-icon-plus" title="View">  
+                    </p:commandButton>  
+
+                    
+
+                    <p:dialog header="Agregar Nueva Persona" widgetVar="newDialog" resizable="false" id="carDlg"  
+                              showEffect="fade" hideEffect="explode" modal="true">  
+
+                        <h:panelGrid id="displayGuardar" columns="2" cellpadding="4" style="margin:0 auto;">
+                            
+                            <p:messages id="sysMsg"/>
+                            <p:spacer/>
+                            
+                            <h:outputText value="Documento:" />
+                            <p:inputText id="txtDocumento" value="#{TerceroBean.objTercero.terDocumento}" required="true" label="txtDocumento">  
+                               
+                            </p:inputText>
+
+                            <h:outputText value="Nombre:" />  
+                            <p:inputText id="txtFirstname" value="#{TerceroBean.objTercero.terNombre}" required="true" label="txtFirstname">  
+                                <f:validateLength minimum="4" />  
+                            </p:inputText> 
+                            
+                            <h:outputText value="Apellido:" />  
+                            <p:inputText id="txtLastName" value="#{TerceroBean.objTercero.terApellidos}" required="true" label="txtLastName">  
+                                <f:validateLength minimum="4" />  
+                            </p:inputText>
+                            
+                            <h:outputText value="Telefono:" />
+                            <p:inputText id="txtTelefono" value="#{TerceroBean.objTercero.terTelefono}" required="true" label="txtTelefono">  
+                                <f:validateLength minimum="4" />  
+                            </p:inputText>
+                            
+                            <h:outputText value="Direccion:" />
+                            <p:inputText id="txtDireccion" value="#{TerceroBean.objTercero.terDireccion}" label="txtDireccion">  
+                            </p:inputText>
+                            
+                            <h:outputText value="Clave" />
+                            <p:password id="txtClave" value="#{TerceroBean.objTercero.terClave}" required="true" label="txtClave">  
+                                <f:validateLength minimum="5" />  
+                            </p:password>
+                            
+                            <p:commandButton value="Reset" type="reset" icon="ui-icon-circle-close"/>
+                            <p:commandButton id="btnGuardar" update="displayGuardar" value="Guardar" icon="ui-icon-disk" action="#{TerceroBean.guardar}" oncomplete="reset"/>
+
+                        </h:panelGrid>  
+
+                    </p:dialog> 
+                    
+                    
+
+                </h:form>  
+
+
+
+
+            </ui:define>
+
+
+        </ui:composition>
+
+    </body>
+</html>

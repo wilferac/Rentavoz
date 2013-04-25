@@ -7,7 +7,7 @@
 
     
     <p:tieredMenu style="width:120px">  
-        <p:menuitem value="Inicio" actionListener="#{MenuBean.delete}" update="messages" icon="ui-icon-home" />  
+        <p:menuitem value="Inicio" actionListener="#{MenuBean.goIndex}" update="messages" icon="ui-icon-home" />  
 
         <p:submenu rendered="#{LoginBean.admin}" label="Agregar" >  
             <p:menuitem value="Tercero" actionListener="#{MenuBean.goCreateTercero}" update="messages" icon="ui-icon-person" />  
