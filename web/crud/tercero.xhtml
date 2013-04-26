@@ -17,7 +17,7 @@
 
                 <h:form id="form2">  
 
-                    <p:commandButton id="selectButton" value="Agregar" oncomplete="newDialog.show()" icon="ui-icon-plus" title="View">  
+                    <p:commandButton id="selectButton" update="displayGuardar"  value="Agregar" oncomplete="newDialog.show()" icon="ui-icon-plus" title="View">  
                     </p:commandButton>
 
 
@@ -69,7 +69,7 @@
 
                 <h:form id="form">  
 
-                    
+
 
 
                     <p:growl id="msgs" showDetail="true" />  
@@ -119,6 +119,12 @@
                             <h:outputText value="#{tercero.terDireccion}" />  
                         </p:column> 
 
+                        <p:column id="columEdit" exportable="false" headerText="" footerText="">  
+                            <p:commandButton id="selectButtonEdit" update=":fromEditar" action="#{TerceroBean.prepararUpdate(tercero.idTecero)}" value="" oncomplete="editDialog.show()" icon="ui-icon-pencil" title="Editar">  
+                            </p:commandButton>
+
+                        </p:column> 
+
 
                     </p:dataTable>
                     <h:panelGrid columns="2">  
@@ -145,6 +151,56 @@
 
 
                 </h:form>
+
+
+                <h:form id="fromEditar">  
+
+
+                    <p:dialog header="Editar Tercero" widgetVar="editDialog" resizable="false" id="carDlgEdit"  
+                              showEffect="fade" hideEffect="explode" modal="true" >  
+
+                        <h:panelGrid id="displayEditar" columns="2" cellpadding="4" style="margin:0 auto;">
+
+                            <h:outputText value="Documento:" />
+                            <p:inputText id="txtDocumentoEdit" value="#{TerceroBean.objTercero.terDocumento}" required="true" label="Documento">  
+
+                            </p:inputText>
+
+                            <h:outputText value="Nombre:" />  
+                            <p:inputText id="txtFirstnameEdit" value="#{TerceroBean.objTercero.terNombre}" required="true" label="Nombre">  
+                                <f:validateLength minimum="4" />  
+                            </p:inputText> 
+
+                            <h:outputText value="Apellido:" />  
+                            <p:inputText id="txtLastNameEdit" value="#{TerceroBean.objTercero.terApellidos}" required="true" label="Apellido">  
+                                <f:validateLength minimum="4" />  
+                            </p:inputText>
+
+                            <h:outputText value="Telefono:" />
+                            <p:inputText id="txtTelefonoEdit" value="#{TerceroBean.objTercero.terTelefono}" required="true" label="Telefono">  
+                                <f:validateLength minimum="4" />  
+                            </p:inputText>
+
+                            <h:outputText value="Direccion:" />
+                            <p:inputText id="txtDireccionEdit" value="#{TerceroBean.objTercero.terDireccion}" label="Direccion">  
+                            </p:inputText>
+
+                            <h:outputText value="Clave" />
+                            <p:password id="txtClaveEdit" value="#{TerceroBean.objTercero.terClave}" required="true" label="Clave">  
+                                <f:validateLength minimum="5" />  
+                            </p:password>
+
+                            <p:commandButton value="Reset" type="reset" icon="ui-icon-circle-close"/>  
+                            <p:commandButton id="btnGuardarEdit" update=":form" value="Guardar" icon="ui-icon-disk" action="#{TerceroBean.updateTercero}" oncomplete="editDialog.hide()"/>
+
+                        </h:panelGrid>  
+
+                    </p:dialog> 
+
+
+                </h:form>
+
+
 
             </ui:define>
 

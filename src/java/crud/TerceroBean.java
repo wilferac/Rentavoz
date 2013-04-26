@@ -25,6 +25,34 @@ public class TerceroBean
     private TerceroDao daoTercero;
     private List<Tercero> listTercero;
     private List<Tercero> listTerceroFiltro;
+    
+    public void prepararUpdate(int id)
+    {
+        objTercero = daoTercero.getOne(id);
+        if(objTercero== null)
+        {
+            System.out.println("esta mierda es null");
+        }
+       
+        System.out.println("seteando tercero "+id);
+    }
+    
+    public void updateTercero()
+    {
+        FacesMessage message;
+        //message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Tercero Creado", null);
+        try
+        {
+            daoTercero.actualizar(objTercero);
+            message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Tercero Actualizado", null);
+            objTercero = new Tercero();
+        } catch (Exception e)
+        {
+            message = new FacesMessage(FacesMessage.SEVERITY_ERROR, e.getMessage(), null);
+        }
+
+        FacesContext.getCurrentInstance().addMessage(null, message);
+    }
 
     public void guardar()
     {
