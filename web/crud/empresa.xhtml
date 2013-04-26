@@ -1,0 +1,202 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <body>
+
+        <ui:composition template="./../WEB-INF/Template.xhtml">
+            <ui:define name="content">
+                
+                <h:form id="form2">
+                    <p:commandButton id="selectButton" update="displayGuardar"  value="Agregar" oncomplete="newDialog.show()" icon="ui-icon-plus" title="View">  
+                    </p:commandButton>
+                    
+                    <p:dialog header="Agregar Nueva Persona" widgetVar="newDialog" resizable="false" id="carDlg"  
+                              showEffect="fade" hideEffect="explode" modal="true" >
+                        <h:panelGrid id="displayGuardar" columns="2" cellpadding="4" style="margin:0 auto;">
+
+                            <h:outputText value="Documento:" />
+                            <p:inputText id="txtDocumento" value="#{TerceroBean.objTercero.terDocumento}" required="true" label="Documento">  
+
+                            </p:inputText>
+
+                            <h:outputText value="Nombre:" />  
+                            <p:inputText id="txtFirstname" value="#{TerceroBean.objTercero.terNombre}" required="true" label="Nombre">  
+                                <f:validateLength minimum="4" />  
+                            </p:inputText> 
+
+                            <h:outputText value="Apellido:" />  
+                            <p:inputText id="txtLastName" value="#{TerceroBean.objTercero.terApellidos}" required="true" label="Apellido">  
+                                <f:validateLength minimum="4" />  
+                            </p:inputText>
+
+                            <h:outputText value="Telefono:" />
+                            <p:inputText id="txtTelefono" value="#{TerceroBean.objTercero.terTelefono}" required="true" label="Telefono">  
+                                <f:validateLength minimum="4" />  
+                            </p:inputText>
+
+                            <h:outputText value="Direccion:" />
+                            <p:inputText id="txtDireccion" value="#{TerceroBean.objTercero.terDireccion}" label="Direccion">  
+                            </p:inputText>
+
+                            <h:outputText value="Clave" />
+                            <p:password id="txtClave" value="#{TerceroBean.objTercero.terClave}" required="true" label="Clave">  
+                                <f:validateLength minimum="5" />  
+                            </p:password>
+
+                            <p:commandButton value="Reset" type="reset" icon="ui-icon-circle-close"/>  
+                            <p:commandButton id="btnGuardar" update=":form , displayGuardar" value="Guardar" icon="ui-icon-disk" action="#{TerceroBean.guardar}" oncomplete="reset"/>
+
+                        </h:panelGrid>  
+
+                    </p:dialog> 
+
+
+                </h:form>  
+
+                <h:form id="form">  
+
+
+
+
+                    <p:growl id="msgs" showDetail="true" />  
+
+
+
+
+
+
+                    <p:dataTable resizableColumns="true" id="dataTable" var="tercero" value="#{TerceroBean.listTercero}" widgetVar="tablaTercero"   
+                                 emptyMessage="No se encontraron terceros" filteredValue="#{TerceroBean.listTerceroFiltro}">  
+
+                        <f:facet name="header">  
+                            <p:outputPanel>  
+                                <h:outputText value="Buscar por todos:" />  
+                                <p:inputText id="globalFilter" onkeyup="tablaTercero.filter()" style="width:150px" />  
+                            </p:outputPanel>  
+                        </f:facet>  
+
+                        <p:column id="columDocu" filterBy="#{tercero.terDocumento}"   
+                                  headerText="Documento" footerText=""  
+                                  filterMatchMode="contains">  
+                            <h:outputText value="#{tercero.terDocumento}" />  
+                        </p:column>
+
+                        <p:column id="columNome" filterBy="#{tercero.terNombre}"   
+                                  headerText="Nombre" footerText=""  
+                                  filterMatchMode="contains">  
+                            <h:outputText value="#{tercero.terNombre}" />  
+                        </p:column>
+
+                        <p:column id="columApell" filterBy="#{tercero.terApellidos}"   
+                                  headerText="Apellido" footerText=""  
+                                  filterMatchMode="contains">  
+                            <h:outputText value="#{tercero.terApellidos}" />  
+                        </p:column> 
+
+                        <p:column id="columTel" filterBy="#{tercero.terTelefono}"   
+                                  headerText="Telefono" footerText=""  
+                                  filterMatchMode="contains">  
+                            <h:outputText value="#{tercero.terTelefono}" />  
+                        </p:column> 
+
+                        <p:column id="columDir" filterBy="#{tercero.terDireccion}"   
+                                  headerText="Dirección" footerText=""  
+                                  filterMatchMode="contains">  
+                            <h:outputText value="#{tercero.terDireccion}" />  
+                        </p:column> 
+
+                        <p:column id="columEdit" exportable="false" headerText="" footerText="">  
+                            <p:commandButton id="selectButtonEdit" update=":fromEditar" action="#{TerceroBean.prepararUpdate(tercero.idTecero)}" value="" oncomplete="editDialog.show()" icon="ui-icon-pencil" title="Editar">  
+                            </p:commandButton>
+
+                        </p:column> 
+
+
+                    </p:dataTable>
+                    <h:panelGrid columns="2">  
+
+                        <p:panel header="Exportar Datos">  
+
+                            <h:commandLink>  
+                                <p:graphicImage value="/resources/images/icons/pdf.png" />  
+                                <p:dataExporter type="pdf" target="dataTable" fileName="terceros"/>  
+                            </h:commandLink>  
+
+                            <h:commandLink>  
+                                <p:graphicImage value="/resources/images/icons/csv.png" />  
+                                <p:dataExporter type="csv" target="dataTable" fileName="terceros" />  
+                            </h:commandLink>  
+
+                            <h:commandLink>  
+                                <p:graphicImage value="/resources/images/icons/xml.png" />  
+                                <p:dataExporter type="xml" target="dataTable" fileName="terceros" />  
+                            </h:commandLink>  
+                        </p:panel>   
+
+                    </h:panelGrid>
+
+
+                </h:form>
+
+
+                <h:form id="fromEditar">  
+
+
+                    <p:dialog header="Editar Tercero" widgetVar="editDialog" resizable="false" id="carDlgEdit"  
+                              showEffect="fade" hideEffect="explode" modal="true" >  
+
+                        <h:panelGrid id="displayEditar" columns="2" cellpadding="4" style="margin:0 auto;">
+
+                            <h:outputText value="Documento:" />
+                            <p:inputText id="txtDocumentoEdit" value="#{TerceroBean.objTercero.terDocumento}" required="true" label="Documento">  
+
+                            </p:inputText>
+
+                            <h:outputText value="Nombre:" />  
+                            <p:inputText id="txtFirstnameEdit" value="#{TerceroBean.objTercero.terNombre}" required="true" label="Nombre">  
+                                <f:validateLength minimum="4" />  
+                            </p:inputText> 
+
+                            <h:outputText value="Apellido:" />  
+                            <p:inputText id="txtLastNameEdit" value="#{TerceroBean.objTercero.terApellidos}" required="true" label="Apellido">  
+                                <f:validateLength minimum="4" />  
+                            </p:inputText>
+
+                            <h:outputText value="Telefono:" />
+                            <p:inputText id="txtTelefonoEdit" value="#{TerceroBean.objTercero.terTelefono}" required="true" label="Telefono">  
+                                <f:validateLength minimum="4" />  
+                            </p:inputText>
+
+                            <h:outputText value="Direccion:" />
+                            <p:inputText id="txtDireccionEdit" value="#{TerceroBean.objTercero.terDireccion}" label="Direccion">  
+                            </p:inputText>
+
+                            <h:outputText value="Clave" />
+                            <p:password id="txtClaveEdit" value="#{TerceroBean.objTercero.terClave}" required="true" label="Clave">  
+                                <f:validateLength minimum="5" />  
+                            </p:password>
+
+                            <p:commandButton value="Reset" type="reset" icon="ui-icon-circle-close"/>  
+                            <p:commandButton id="btnGuardarEdit" update=":form" value="Guardar" icon="ui-icon-disk" action="#{TerceroBean.updateTercero}" oncomplete="editDialog.hide()"/>
+
+                        </h:panelGrid>  
+
+                    </p:dialog> 
+
+
+                </h:form>
+
+
+
+            </ui:define>
+
+
+        </ui:composition>
+
+    </body>
+</html>

@@ -20,7 +20,6 @@ import model.Tercero;
 @SessionScoped
 public class TerceroBean
 {
-
     private Tercero objTercero;
     private TerceroDao daoTercero;
     private List<Tercero> listTercero;
