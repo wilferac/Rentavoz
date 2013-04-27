@@ -1,0 +1,4 @@
+- las empresas tienen acuerdos, y se supone que el reporte de las empresas estos deben aparecer, por lo tanto se debe crear un boton para agregar estos acuerdo y mostrarlos en un reporte detallado.
+eso es todo lo que toca hacer para este punto.
+
+- esos acuerdos tambien se miran a fin de cierre para ver cuanta plata toca pagarle a la empresa alidada, pero eso hace parte de otro reporte asi que no hay problema con eso.

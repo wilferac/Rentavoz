@@ -19,37 +19,40 @@
                               showEffect="fade" hideEffect="explode" modal="true" >
                         <h:panelGrid id="displayGuardar" columns="2" cellpadding="4" style="margin:0 auto;">
 
-                            <h:outputText value="Documento:" />
-                            <p:inputText id="txtDocumento" value="#{TerceroBean.objTercero.terDocumento}" required="true" label="Documento">  
-
+                            <h:outputText value="Nit:" />  
+                            <p:inputText id="txtNit" value="#{EmpresaBean.objEmpresa.empNit}" required="true" label="Nit">  
+                                <f:validateLength minimum="4" />  
                             </p:inputText>
-
+                            
                             <h:outputText value="Nombre:" />  
-                            <p:inputText id="txtFirstname" value="#{TerceroBean.objTercero.terNombre}" required="true" label="Nombre">  
+                            <p:inputText id="txtNombre" value="#{EmpresaBean.objEmpresa.empNombre}" required="true" label="Nombre">  
+                                <f:validateLength minimum="4" />  
+                            </p:inputText> 
+                            
+                            <h:outputText value="Contacto:" />  
+                            <p:inputText id="txtFirstname" value="#{EmpresaBean.objEmpresa.empContacto}" required="true" label="Contacto">  
                                 <f:validateLength minimum="4" />  
                             </p:inputText> 
 
-                            <h:outputText value="Apellido:" />  
-                            <p:inputText id="txtLastName" value="#{TerceroBean.objTercero.terApellidos}" required="true" label="Apellido">  
-                                <f:validateLength minimum="4" />  
-                            </p:inputText>
+                            
 
                             <h:outputText value="Telefono:" />
-                            <p:inputText id="txtTelefono" value="#{TerceroBean.objTercero.terTelefono}" required="true" label="Telefono">  
+                            <p:inputText id="txtTelefono" value="#{EmpresaBean.objEmpresa.empTelefono}" required="true" label="Telefono">  
                                 <f:validateLength minimum="4" />  
                             </p:inputText>
 
                             <h:outputText value="Direccion:" />
-                            <p:inputText id="txtDireccion" value="#{TerceroBean.objTercero.terDireccion}" label="Direccion">  
+                            <p:inputText id="txtDireccion" value="#{EmpresaBean.objEmpresa.empDireccion}" required="true" label="Direccion">  
+                            </p:inputText>
+                            
+                            <h:outputText value="Alias:" />
+                            <p:inputText id="txtDireccion" value="#{EmpresaBean.objEmpresa.empAlias}" required="true" label="Alias">  
                             </p:inputText>
 
-                            <h:outputText value="Clave" />
-                            <p:password id="txtClave" value="#{TerceroBean.objTercero.terClave}" required="true" label="Clave">  
-                                <f:validateLength minimum="5" />  
-                            </p:password>
+                            
 
                             <p:commandButton value="Reset" type="reset" icon="ui-icon-circle-close"/>  
-                            <p:commandButton id="btnGuardar" update=":form , displayGuardar" value="Guardar" icon="ui-icon-disk" action="#{TerceroBean.guardar}" oncomplete="reset"/>
+                            <p:commandButton id="btnGuardar" update=":form , displayGuardar" value="Guardar" icon="ui-icon-disk" action="#{EmpresaBean.save}" oncomplete="reset"/>
 
                         </h:panelGrid>  
 
@@ -58,20 +61,10 @@
 
                 </h:form>  
 
-                <h:form id="form">  
-
-
-
-
+                <h:form id="form">
                     <p:growl id="msgs" showDetail="true" />  
-
-
-
-
-
-
-                    <p:dataTable resizableColumns="true" id="dataTable" var="tercero" value="#{TerceroBean.listTercero}" widgetVar="tablaTercero"   
-                                 emptyMessage="No se encontraron terceros" filteredValue="#{TerceroBean.listTerceroFiltro}">  
+                    <p:dataTable resizableColumns="true" id="dataTable" var="empresa" value="#{EmpresaBean.listEmpresa}" widgetVar="tablaTercero"   
+                                 emptyMessage="No se encontraron empresas" filteredValue="#{EmpresaBean.listEmpresaFiltro}">  
 
                         <f:facet name="header">  
                             <p:outputPanel>  
@@ -80,38 +73,44 @@
                             </p:outputPanel>  
                         </f:facet>  
 
-                        <p:column id="columDocu" filterBy="#{tercero.terDocumento}"   
-                                  headerText="Documento" footerText=""  
+                        <p:column id="columNit" filterBy="#{empresa.empNit}"   
+                                  headerText="Nit" footerText=""  
                                   filterMatchMode="contains">  
-                            <h:outputText value="#{tercero.terDocumento}" />  
+                            <h:outputText value="#{empresa.empNit}" />  
                         </p:column>
 
-                        <p:column id="columNome" filterBy="#{tercero.terNombre}"   
+                        <p:column id="columNome" filterBy="#{empresa.empNombre}"   
                                   headerText="Nombre" footerText=""  
                                   filterMatchMode="contains">  
-                            <h:outputText value="#{tercero.terNombre}" />  
+                            <h:outputText value="#{empresa.empNombre}" />  
                         </p:column>
 
-                        <p:column id="columApell" filterBy="#{tercero.terApellidos}"   
-                                  headerText="Apellido" footerText=""  
-                                  filterMatchMode="contains">  
-                            <h:outputText value="#{tercero.terApellidos}" />  
-                        </p:column> 
-
-                        <p:column id="columTel" filterBy="#{tercero.terTelefono}"   
-                                  headerText="Telefono" footerText=""  
-                                  filterMatchMode="contains">  
-                            <h:outputText value="#{tercero.terTelefono}" />  
-                        </p:column> 
-
-                        <p:column id="columDir" filterBy="#{tercero.terDireccion}"   
+                        <p:column id="columDirec" filterBy="#{empresa.empDireccion}"   
                                   headerText="Dirección" footerText=""  
                                   filterMatchMode="contains">  
-                            <h:outputText value="#{tercero.terDireccion}" />  
+                            <h:outputText value="#{empresa.empDireccion}" />  
+                        </p:column> 
+
+                        <p:column id="columTel" filterBy="#{empresa.empTelefono}"   
+                                  headerText="Telefono" footerText=""  
+                                  filterMatchMode="contains">  
+                            <h:outputText value="#{empresa.empTelefono}" />  
+                        </p:column> 
+
+                        <p:column id="columDir" filterBy="#{empresa.empAlias}"   
+                                  headerText="Alias" footerText=""  
+                                  filterMatchMode="contains">  
+                            <h:outputText value="#{empresa.empAlias}" />  
+                        </p:column> 
+                        
+                        <p:column id="columDir" filterBy="#{empresa.empContacto}"   
+                                  headerText="Contacto" footerText=""  
+                                  filterMatchMode="contains">  
+                            <h:outputText value="#{empresa.empContacto}" />  
                         </p:column> 
 
                         <p:column id="columEdit" exportable="false" headerText="" footerText="">  
-                            <p:commandButton id="selectButtonEdit" update=":fromEditar" action="#{TerceroBean.prepararUpdate(tercero.idTecero)}" value="" oncomplete="editDialog.show()" icon="ui-icon-pencil" title="Editar">  
+                            <p:commandButton id="selectButtonEdit" update=":fromEditar" action="#{EmpresaBean.prepararUpdate(empresa.idEmpresa)}" value="" oncomplete="editDialog.show()" icon="ui-icon-pencil" title="Editar">  
                             </p:commandButton>
 
                         </p:column> 
@@ -124,17 +123,17 @@
 
                             <h:commandLink>  
                                 <p:graphicImage value="/resources/images/icons/pdf.png" />  
-                                <p:dataExporter type="pdf" target="dataTable" fileName="terceros"/>  
+                                <p:dataExporter type="pdf" target="dataTable" fileName="empresas"/>  
                             </h:commandLink>  
 
                             <h:commandLink>  
                                 <p:graphicImage value="/resources/images/icons/csv.png" />  
-                                <p:dataExporter type="csv" target="dataTable" fileName="terceros" />  
+                                <p:dataExporter type="csv" target="dataTable" fileName="empresas" />  
                             </h:commandLink>  
 
                             <h:commandLink>  
                                 <p:graphicImage value="/resources/images/icons/xml.png" />  
-                                <p:dataExporter type="xml" target="dataTable" fileName="terceros" />  
+                                <p:dataExporter type="xml" target="dataTable" fileName="empresas" />  
                             </h:commandLink>  
                         </p:panel>   
 
@@ -152,37 +151,39 @@
 
                         <h:panelGrid id="displayEditar" columns="2" cellpadding="4" style="margin:0 auto;">
 
-                            <h:outputText value="Documento:" />
-                            <p:inputText id="txtDocumentoEdit" value="#{TerceroBean.objTercero.terDocumento}" required="true" label="Documento">  
-
+                            <h:outputText value="Nit:" />  
+                            <p:inputText id="txtNit" value="#{EmpresaBean.objEmpresa.empNit}" required="true" label="Nit">  
+                                <f:validateLength minimum="4" />  
                             </p:inputText>
-
+                            
                             <h:outputText value="Nombre:" />  
-                            <p:inputText id="txtFirstnameEdit" value="#{TerceroBean.objTercero.terNombre}" required="true" label="Nombre">  
+                            <p:inputText id="txtNombre" value="#{EmpresaBean.objEmpresa.empNombre}" required="true" label="Nombre">  
+                                <f:validateLength minimum="4" />  
+                            </p:inputText> 
+                            
+                            <h:outputText value="Contacto:" />  
+                            <p:inputText id="txtFirstname" value="#{EmpresaBean.objEmpresa.empContacto}" required="true" label="Contacto">  
                                 <f:validateLength minimum="4" />  
                             </p:inputText> 
 
-                            <h:outputText value="Apellido:" />  
-                            <p:inputText id="txtLastNameEdit" value="#{TerceroBean.objTercero.terApellidos}" required="true" label="Apellido">  
-                                <f:validateLength minimum="4" />  
-                            </p:inputText>
+                            
 
                             <h:outputText value="Telefono:" />
-                            <p:inputText id="txtTelefonoEdit" value="#{TerceroBean.objTercero.terTelefono}" required="true" label="Telefono">  
+                            <p:inputText id="txtTelefono" value="#{EmpresaBean.objEmpresa.empTelefono}" required="true" label="Telefono">  
                                 <f:validateLength minimum="4" />  
                             </p:inputText>
 
                             <h:outputText value="Direccion:" />
-                            <p:inputText id="txtDireccionEdit" value="#{TerceroBean.objTercero.terDireccion}" label="Direccion">  
+                            <p:inputText id="txtDireccion" value="#{EmpresaBean.objEmpresa.empDireccion}" required="true" label="Direccion">  
+                            </p:inputText>
+                            
+                            <h:outputText value="Alias:" />
+                            <p:inputText id="txtDireccion" value="#{EmpresaBean.objEmpresa.empAlias}" required="true" label="Alias">  
                             </p:inputText>
 
-                            <h:outputText value="Clave" />
-                            <p:password id="txtClaveEdit" value="#{TerceroBean.objTercero.terClave}" required="true" label="Clave">  
-                                <f:validateLength minimum="5" />  
-                            </p:password>
-
+  
                             <p:commandButton value="Reset" type="reset" icon="ui-icon-circle-close"/>  
-                            <p:commandButton id="btnGuardarEdit" update=":form" value="Guardar" icon="ui-icon-disk" action="#{TerceroBean.updateTercero}" oncomplete="editDialog.hide()"/>
+                            <p:commandButton id="btnGuardarEdit" update=":form" value="Guardar" icon="ui-icon-disk" action="#{EmpresaBean.update}" oncomplete="editDialog.hide()"/>
 
                         </h:panelGrid>  
 

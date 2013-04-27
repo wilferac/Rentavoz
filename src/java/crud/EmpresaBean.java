@@ -5,6 +5,7 @@
 package crud;
 
 import dao.EmpresaDao;
+import java.util.List;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
@@ -22,7 +23,19 @@ public class EmpresaBean
 
     private Empresa objEmpresa;
     private EmpresaDao daoEmpresa;
+    private List<Empresa> listEmpresaFiltro;
+    private List<Empresa> listEmpresa;
     
+    public void prepararUpdate(int id)
+    {
+        objEmpresa = daoEmpresa.getOne(id);
+        if(objEmpresa== null)
+        {
+            System.out.println("esta mierda es null");
+        }
+       
+        System.out.println("seteando empresa "+id);
+    }
 
     public void update()
     {
@@ -49,7 +62,7 @@ public class EmpresaBean
         try
         {
             daoEmpresa.insertar(objEmpresa);
-            message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Empresa Creado", null);
+            message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Empresa Creada", null);
             objEmpresa = new Empresa();
         } catch (Exception e)
         {
@@ -61,7 +74,7 @@ public class EmpresaBean
     
     public List<Empresa> getListTerceroFiltro()
     {
-        return listTerceroFiltro;
+        return listEmpresaFiltro;
     }
     
 
@@ -80,4 +93,30 @@ public class EmpresaBean
     {
         this.objEmpresa = objEmpresa;
     }
+
+    public List<Empresa> getListEmpresaFiltro()
+    {
+        return listEmpresaFiltro;
+    }
+
+    public void setListEmpresaFiltro(List<Empresa> listEmpresaFiltro)
+    {
+        this.listEmpresaFiltro = listEmpresaFiltro;
+    }
+
+    public List<Empresa> getListEmpresa()
+    {
+        listEmpresa = daoEmpresa.getAll();
+        return listEmpresa;
+    }
+
+    public void setListEmpresa(List<Empresa> listEmpresa)
+    {
+        this.listEmpresa = listEmpresa;
+    }
+    
+    
+    
+    
+    
 }
