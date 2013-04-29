@@ -46,7 +46,7 @@
                             </p:inputText>
                             
                             <h:outputText value="Alias:" />
-                            <p:inputText id="txtDireccion" value="#{EmpresaBean.objEmpresa.empAlias}" required="true" label="Alias">  
+                            <p:inputText id="txtAlias" value="#{EmpresaBean.objEmpresa.empAlias}" required="true" label="Alias">  
                             </p:inputText>
 
                             
@@ -97,13 +97,13 @@
                             <h:outputText value="#{empresa.empTelefono}" />  
                         </p:column> 
 
-                        <p:column id="columDir" filterBy="#{empresa.empAlias}"   
+                        <p:column id="columAlias" filterBy="#{empresa.empAlias}"   
                                   headerText="Alias" footerText=""  
                                   filterMatchMode="contains">  
                             <h:outputText value="#{empresa.empAlias}" />  
                         </p:column> 
                         
-                        <p:column id="columDir" filterBy="#{empresa.empContacto}"   
+                        <p:column id="columContacto" filterBy="#{empresa.empContacto}"   
                                   headerText="Contacto" footerText=""  
                                   filterMatchMode="contains">  
                             <h:outputText value="#{empresa.empContacto}" />  
@@ -178,7 +178,7 @@
                             </p:inputText>
                             
                             <h:outputText value="Alias:" />
-                            <p:inputText id="txtDireccion" value="#{EmpresaBean.objEmpresa.empAlias}" required="true" label="Alias">  
+                            <p:inputText id="txtAlias" value="#{EmpresaBean.objEmpresa.empAlias}" required="true" label="Alias">  
                             </p:inputText>
 
   

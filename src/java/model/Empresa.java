@@ -11,7 +11,7 @@ import java.util.Set;
 public class Empresa  implements java.io.Serializable {
 
 
-     private int idEmpresa;
+     private Integer idEmpresa;
      private String empNombre;
      private String empNit;
      private String empDireccion;
@@ -25,15 +25,15 @@ public class Empresa  implements java.io.Serializable {
     }
 
 	
-    public Empresa(int idEmpresa, String empNombre, String empNit, String empDireccion, String empAlias) {
-        this.idEmpresa = idEmpresa;
+    public Empresa( String empNombre, String empNit, String empDireccion, String empAlias) {
+        
         this.empNombre = empNombre;
         this.empNit = empNit;
         this.empDireccion = empDireccion;
         this.empAlias = empAlias;
     }
-    public Empresa(int idEmpresa, String empNombre, String empNit, String empDireccion, String empTelefono, String empContacto, String empAlias, Set<Convenio> convenios, Set<Linea> lineas) {
-       this.idEmpresa = idEmpresa;
+    public Empresa( String empNombre, String empNit, String empDireccion, String empTelefono, String empContacto, String empAlias, Set<Convenio> convenios, Set<Linea> lineas) {
+       
        this.empNombre = empNombre;
        this.empNit = empNit;
        this.empDireccion = empDireccion;
@@ -44,11 +44,11 @@ public class Empresa  implements java.io.Serializable {
        this.lineas = lineas;
     }
    
-    public int getIdEmpresa() {
+    public Integer getIdEmpresa() {
         return this.idEmpresa;
     }
     
-    public void setIdEmpresa(int idEmpresa) {
+    public void setIdEmpresa(Integer idEmpresa) {
         this.idEmpresa = idEmpresa;
     }
     public String getEmpNombre() {

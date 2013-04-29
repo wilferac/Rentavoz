@@ -95,7 +95,7 @@ public class TerceroDao
         try
         {
             se.beginTransaction();
-            se.save(ter);
+            se.merge(ter);
             se.beginTransaction().commit();
            // se.close();
         } catch (HibernateException e)
