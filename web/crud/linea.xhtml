@@ -10,11 +10,11 @@
 
         <ui:composition template="./../WEB-INF/Template.xhtml">
             <ui:define name="content">
-                
+
                 <h:form id="form2">
-                    <p:commandButton id="selectButton" update="displayGuardar"  value="Agregar" oncomplete="newDialog.show()" icon="ui-icon-plus" title="View">  
+                    <p:commandButton id="selectButton" update="displayGuardar" action="#{LineaBean.prepararInsert}"  value="Agregar" oncomplete="newDialog.show()" icon="ui-icon-plus" title="View">  
                     </p:commandButton>
-                    
+
                     <p:dialog header="Agregar Nueva Persona" widgetVar="newDialog" resizable="false" id="carDlg"  
                               showEffect="fade" hideEffect="explode" modal="true" >
                         <h:panelGrid id="displayGuardar" columns="2" cellpadding="4" style="margin:0 auto;">
@@ -23,24 +23,20 @@
                             <p:inputText id="txtNit" value="#{LineaBean.objLinea.linNumero}" required="true" label="Numero">  
                                 <f:validateLength minimum="4" />  
                             </p:inputText>
-                            
+
                             <h:outputText value="Corte:" />  
                             <p:inputText id="txtNombre" value="#{LineaBean.objLinea.linCorte}" required="true" label="Corte">  
-                                <f:validateLength minimum="4" />  
+                                <f:validateLength minimum="1" maximum="2"/>  
                             </p:inputText> 
-                            
+
                             <h:outputText value="Empresa:" />  
-                            <p:inputText id="txtFirstname" value="#{LineaBean.objLinea.empresa.idEmpresa}" required="true" label="Empresa">  
-                                <f:validateLength minimum="4" />  
-                            </p:inputText> 
+                            <h:selectOneMenu id="city" value="#{LineaBean.idEmpresa}">  
+                                <f:selectItem itemLabel="Select City" itemValue="" />  
+                                <f:selectItems value="#{LineaBean.listEmpresa}"
+                                               var="empresa" itemLabel="#{empresa.empAlias}"
+                                               itemValue="#{empresa.idEmpresa}" noSelectionValue="Selecciona una empresa"/>
+                            </h:selectOneMenu>
 
-                            
-
-                            <h:outputText value="Estado:" />
-                            <p:inputText id="txtTelefono" value="#{LineaBean.objLinea.estadoLinea.idEstadoLinea}" required="true" label="Estado">  
-                                <f:validateLength minimum="4" />  
-                            </p:inputText>
-                            
                             <p:commandButton value="Reset" type="reset" icon="ui-icon-circle-close"/>  
                             <p:commandButton id="btnGuardar" update=":form , displayGuardar" value="Guardar" icon="ui-icon-disk" action="#{LineaBean.save}" oncomplete="reset"/>
 
@@ -80,14 +76,15 @@
                                   filterMatchMode="contains">  
                             <h:outputText value="#{linea.empresa.empAlias}" />  
                         </p:column> 
+                        
 
                         <p:column id="columTel" filterBy="#{linea.estadoLinea.estLinNombre}"   
                                   headerText="Estado" footerText=""  
                                   filterMatchMode="contains">  
-                            <h:outputText value="#{linea.estadoLinea.idEstadoLinea}" />  
+                            <h:outputText value="#{linea.estadoLinea.estLinNombre}" />  
                         </p:column> 
 
-                        
+
 
                         <p:column id="columEdit" exportable="false" headerText="" footerText="">  
                             <p:commandButton id="selectButtonEdit" update=":fromEditar" action="#{LineaBean.prepararUpdate(linea.idLinea)}" value="" oncomplete="editDialog.show()" icon="ui-icon-pencil" title="Editar">  
@@ -131,29 +128,41 @@
 
                         <h:panelGrid id="displayEditar" columns="2" cellpadding="4" style="margin:0 auto;">
 
-                           <h:outputText value="Numero:" />  
+                            <h:outputText value="Numero:" />  
                             <p:inputText id="txtNit" value="#{LineaBean.objLinea.linNumero}" required="true" label="Numero">  
                                 <f:validateLength minimum="4" />  
                             </p:inputText>
-                            
+
                             <h:outputText value="Corte:" />  
                             <p:inputText id="txtNombre" value="#{LineaBean.objLinea.linCorte}" required="true" label="Corte">  
-                                <f:validateLength minimum="4" />  
+                                <f:validateLength minimum="1" maximum="2"/>  
                             </p:inputText> 
-                            
+
                             <h:outputText value="Empresa:" />  
-                            <p:inputText id="txtFirstname" value="#{LineaBean.objLinea.empresa.idEmpresa}" required="true" label="Empresa">  
-                                <f:validateLength minimum="4" />  
-                            </p:inputText> 
-
+                            <h:selectOneMenu id="empresaSel" value="#{LineaBean.idEmpresa}">  
+                                <f:selectItem itemLabel="Select City" itemValue="" />  
+                                <f:selectItems value="#{LineaBean.listEmpresa}"
+                                               var="empresa" itemLabel="#{empresa.empAlias}"
+                                               itemValue="#{empresa.idEmpresa}" noSelectionValue="Selecciona una empresa"/>
+                            </h:selectOneMenu>
                             
+                            
+                            <h:outputText value="Estado Linea:" />  
+                            <h:selectOneMenu id="estadoSel" value="#{LineaBean.idEstado}">  
+                                <f:selectItem itemLabel="Select City" itemValue="" />  
+                                <f:selectItems value="#{LineaBean.listEstados}"
+                                               var="estado" itemLabel="#{estado.estLinNombre}"
+                                               itemValue="#{estado.idEstadoLinea}" noSelectionValue="Selecciona un estado"/>
+                            </h:selectOneMenu>
 
-                            <h:outputText value="Estado:" />
-                            <p:inputText id="txtTelefono" value="#{LineaBean.objLinea.estadoLinea.idEstadoLinea}" required="true" label="Estado">  
-                                <f:validateLength minimum="4" />  
-                            </p:inputText>
+                            <!--
+                            
+                                                        <h:outputText value="Estado:" />
+                                                        <p:inputText id="txtTelefono" value="#{LineaBean.objLinea.estadoLinea.idEstadoLinea}" required="true" label="Estado">  
+                                                            <f:validateLength minimum="4" />  
+                                                        </p:inputText>-->
 
-  
+
                             <p:commandButton value="Reset" type="reset" icon="ui-icon-circle-close"/>  
                             <p:commandButton id="btnGuardarEdit" update=":form" value="Guardar" icon="ui-icon-disk" action="#{LineaBean.update}" oncomplete="editDialog.hide()"/>
 

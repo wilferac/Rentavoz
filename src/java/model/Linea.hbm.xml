@@ -22,7 +22,7 @@
         <property name="linCorte" type="int">
             <column name="linCorte" not-null="true" />
         </property>
-        <property name="fecha" type="timestamp">
+        <property name="fecha" type="timestamp" insert="false" update="false">
             <column name="fecha" length="19" not-null="true" />
         </property>
         <set name="planLineas" inverse="true">
