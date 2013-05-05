@@ -29,14 +29,14 @@ public class LoginBean
     Tercero loginTer;
     String rolRequired;
     boolean admin, usuario, cliente;
-
     boolean isLogin;
+
     /**
      * Creates a new instance of LoginBean
      */
     public LoginBean()
     {
-        isLogin=false;
+        isLogin = false;
     }
 
     public String login()
@@ -52,7 +52,7 @@ public class LoginBean
         {
             loggedIn = true;
             //msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Welcome", loginTer.getTerDocumento() + "");
-            isLogin=true;
+            isLogin = true;
             checkRol();
             return "index.xhtml?faces-redirect=true";
         } else
@@ -77,7 +77,7 @@ public class LoginBean
         for (Roles rol : loginTer.getRoleses())
         {
             int num = rol.getRolId();
-            System.out.println("el numero: "+num);
+            System.out.println("el numero: " + num);
             if (num == 1)
             {
                 this.admin = true;
@@ -90,10 +90,20 @@ public class LoginBean
             }
         }
     }
-    
-    public String logout() {
+
+    public void logout()
+    {
         FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
-        return "login.xhtml?faces-redirect=true";
+        try
+        {
+
+            FacesContext.getCurrentInstance().getExternalContext().redirect("/Minutos/faces/login.xhtml");
+        } catch (Exception ex)
+        {
+            System.out.println(ex.getMessage());
+            //Logger.getLogger(MenuBean.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        // return "login.xhtml?faces-redirect=true";
     }
 
     public String getRolRequired()
@@ -159,8 +169,4 @@ public class LoginBean
     {
         this.isLogin = isLogin;
     }
-    
-    
-    
-    
 }
