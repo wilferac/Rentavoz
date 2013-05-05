@@ -52,7 +52,7 @@ public class LineaBean
 
     public void prepararInsert()
     {
-        idEmpresa=0;
+        idEmpresa = 0;
         objLinea = new Linea();
     }
 
@@ -73,10 +73,10 @@ public class LineaBean
             message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Linea actualizada", null);
             objLinea = new Linea();
             daoLinea.cerrar();
-            daoLinea= new LineaDao();
-            idEmpresa=0; 
-            idEstado=0;
-            
+            daoLinea = new LineaDao();
+            idEmpresa = 0;
+            idEstado = 0;
+
         } catch (Exception e)
         {
             message = new FacesMessage(FacesMessage.SEVERITY_ERROR, e.getMessage(), null);

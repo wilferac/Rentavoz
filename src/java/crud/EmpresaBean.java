@@ -25,16 +25,16 @@ public class EmpresaBean
     private EmpresaDao daoEmpresa;
     private List<Empresa> listEmpresaFiltro;
     private List<Empresa> listEmpresa;
-    
+
     public void prepararUpdate(int id)
     {
         objEmpresa = daoEmpresa.getOne(id);
-        if(objEmpresa== null)
+        if (objEmpresa == null)
         {
             System.out.println("esta mierda es null");
         }
-       
-        System.out.println("seteando empresa "+id);
+
+        System.out.println("seteando empresa " + id);
     }
 
     public void update()
@@ -53,8 +53,7 @@ public class EmpresaBean
 
         FacesContext.getCurrentInstance().addMessage(null, message);
     }
-    
-    
+
     public void save()
     {
         FacesMessage message;
@@ -71,12 +70,11 @@ public class EmpresaBean
 
         FacesContext.getCurrentInstance().addMessage(null, message);
     }
-    
+
     public List<Empresa> getListTerceroFiltro()
     {
         return listEmpresaFiltro;
     }
-    
 
     public EmpresaBean()
     {
@@ -114,9 +112,4 @@ public class EmpresaBean
     {
         this.listEmpresa = listEmpresa;
     }
-    
-    
-    
-    
-    
 }

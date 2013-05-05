@@ -15,12 +15,12 @@ import util.HibernateUtil;
  *
  * @author wilferac
  */
-public class SuscursalDao
+public class SucursalDao
 {
 
     Session se;
 
-    public SuscursalDao()
+    public SucursalDao()
     {
         se = HibernateUtil.getSessionFactory().openSession();
     }
