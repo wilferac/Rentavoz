@@ -37,7 +37,7 @@ public class SimcardBean
         System.out.println("seteando Simcard " + id);
     }
 
-    public void updateTercero()
+    public void update()
     {
         FacesMessage message;
         //message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Tercero Creado", null);

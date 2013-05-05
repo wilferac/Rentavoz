@@ -37,7 +37,7 @@ public class TipoGastoBean
         System.out.println("seteando TipoGasto " + id);
     }
 
-    public void updateTercero()
+    public void update()
     {
         FacesMessage message;
         //message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Tercero Creado", null);

@@ -37,7 +37,7 @@ public class CuentasBean
         System.out.println("seteando Cuentas " + id);
     }
 
-    public void updateTercero()
+    public void update()
     {
         FacesMessage message;
         //message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Tercero Creado", null);

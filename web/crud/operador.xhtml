@@ -1,0 +1,119 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <body>
+
+        <ui:composition template="./../WEB-INF/Template.xhtml">
+            <ui:define name="content">
+                
+                <h:form id="form2">
+                    <p:commandButton id="selectButton" update="displayGuardar"  value="Agregar" oncomplete="newDialog.show()" icon="ui-icon-plus" title="View">  
+                    </p:commandButton>
+                    
+                    <p:dialog header="Agregar Nueva Operador" widgetVar="newDialog" resizable="false" id="carDlg"  
+                              showEffect="fade" hideEffect="explode" modal="true" >
+                        <h:panelGrid id="displayGuardar" columns="2" cellpadding="4" style="margin:0 auto;">
+
+                            <h:outputText value="Nombre:" />  
+                            <p:inputText id="txtNombre" value="#{OperadorBean.obj.opeNombre}" required="true" label="Nombre">  
+                                <f:validateLength minimum="4" />  
+                            </p:inputText>
+
+                            <p:commandButton value="Reset" type="reset" icon="ui-icon-circle-close"/>  
+                            <p:commandButton id="btnGuardar" update=":form , displayGuardar" value="Guardar" icon="ui-icon-disk" action="#{OperadorBean.guardar}" oncomplete="reset"/>
+
+                        </h:panelGrid>  
+
+                    </p:dialog> 
+
+
+                </h:form>  
+
+                <h:form id="form">
+                    <p:growl id="msgs" showDetail="true" />  
+                    <p:dataTable resizableColumns="true" id="dataTable" var="operador" value="#{OperadorBean.listObj}" widgetVar="tablaMuestra"   
+                                 emptyMessage="No se encontraron Operadores" filteredValue="#{OperadorBean.listObjFiltro}">  
+
+                        <f:facet name="header">  
+                            <p:outputPanel>  
+                                <h:outputText value="Buscar por todos:" />  
+                                <p:inputText id="globalFilter" onkeyup="tablaMuestra.filter()" style="width:150px" />  
+                            </p:outputPanel>  
+                        </f:facet>  
+
+                        <p:column id="columNit" filterBy="#{operador.opeNombre}"   
+                                  headerText="Nombre" footerText=""  
+                                  filterMatchMode="contains">  
+                            <h:outputText value="#{operador.opeNombre}" />  
+                        </p:column>
+
+                        <p:column id="columEdit" exportable="false" headerText="" footerText="">  
+                            <p:commandButton id="selectButtonEdit" update=":fromEditar" action="#{OperadorBean.prepararUpdate(operador.idOperador)}" value="" oncomplete="editDialog.show()" icon="ui-icon-pencil" title="Editar">  
+                            </p:commandButton>
+                        </p:column> 
+
+
+                    </p:dataTable>
+                    <h:panelGrid columns="2">  
+
+                        <p:panel header="Exportar Datos">  
+
+                            <h:commandLink>  
+                                <p:graphicImage value="/resources/images/icons/pdf.png" />  
+                                <p:dataExporter type="pdf" target="dataTable" fileName="operadores"/>  
+                            </h:commandLink>  
+
+                            <h:commandLink>  
+                                <p:graphicImage value="/resources/images/icons/csv.png" />  
+                                <p:dataExporter type="csv" target="dataTable" fileName="operadores" />  
+                            </h:commandLink>  
+
+                            <h:commandLink>  
+                                <p:graphicImage value="/resources/images/icons/xml.png" />  
+                                <p:dataExporter type="xml" target="dataTable" fileName="operadores" />  
+                            </h:commandLink>  
+                        </p:panel>   
+
+                    </h:panelGrid>
+
+
+                </h:form>
+
+
+                <h:form id="fromEditar">  
+
+
+                    <p:dialog header="Editar Tercero" widgetVar="editDialog" resizable="false" id="carDlgEdit"  
+                              showEffect="fade" hideEffect="explode" modal="true" >  
+
+                        <h:panelGrid id="displayEditar" columns="2" cellpadding="4" style="margin:0 auto;">
+
+                            <h:outputText value="Nombre:" />  
+                            <p:inputText id="txtNombre" value="#{OperadorBean.obj.opeNombre}" required="true" label="Nombre">  
+                                <f:validateLength minimum="4" />  
+                            </p:inputText>
+
+                            <p:commandButton value="Reset" type="reset" icon="ui-icon-circle-close"/>  
+                            <p:commandButton id="btnGuardarEdit" update=":form" value="Guardar" icon="ui-icon-disk" action="#{OperadorBean.update}" oncomplete="editDialog.hide()"/>
+
+                        </h:panelGrid>  
+
+                    </p:dialog> 
+
+
+                </h:form>
+
+
+
+            </ui:define>
+
+
+        </ui:composition>
+
+    </body>
+</html>
