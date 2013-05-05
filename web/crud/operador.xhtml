@@ -39,12 +39,7 @@
                     <p:dataTable resizableColumns="true" id="dataTable" var="operador" value="#{OperadorBean.listObj}" widgetVar="tablaMuestra"   
                                  emptyMessage="No se encontraron Operadores" filteredValue="#{OperadorBean.listObjFiltro}">  
 
-                        <f:facet name="header">  
-                            <p:outputPanel>  
-                                <h:outputText value="Buscar por todos:" />  
-                                <p:inputText id="globalFilter" onkeyup="tablaMuestra.filter()" style="width:150px" />  
-                            </p:outputPanel>  
-                        </f:facet>  
+                
 
                         <p:column id="columNit" filterBy="#{operador.opeNombre}"   
                                   headerText="Nombre" footerText=""  

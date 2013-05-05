@@ -100,6 +100,7 @@ public class OperadorBean
 
     public List<Operador> getListObj()
     {
+        listObj = daoObj.getAll();
         return listObj;
     }
 

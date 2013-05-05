@@ -22,17 +22,24 @@ import javax.servlet.http.HttpServletResponse;
 public class MenuBean
 {
 
-    public String goIndex()
-    {
-        return "WEB-INF/login.xhtml?faces-redirect=true";
-    }
-
-    public void goCreateTercero()
+    public void goIndex()
     {
         try
         {
 
-            FacesContext.getCurrentInstance().getExternalContext().redirect("crud/tercero.xhtml");
+            FacesContext.getCurrentInstance().getExternalContext().redirect("/Minutos/faces/index.xhtml");
+        } catch (IOException ex)
+        {
+            Logger.getLogger(MenuBean.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    public void goCrud(String location)
+    {
+        try
+        {
+
+            FacesContext.getCurrentInstance().getExternalContext().redirect("/Minutos/faces/crud/"+location+".xhtml");
         } catch (IOException ex)
         {
             Logger.getLogger(MenuBean.class.getName()).log(Level.SEVERE, null, ex);
