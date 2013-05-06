@@ -9,7 +9,7 @@
             <generator class="identity" />
         </id>
         <many-to-one name="linea" class="model.Linea" fetch="select">
-            <column name="idLinea" not-null="true">
+            <column name="idLinea" not-null="false">
                 <comment>la linea que se le asigno a la sim</comment>
             </column>
         </many-to-one>
@@ -23,7 +23,7 @@
                 <comment>indica si la simcard esta en servicio o no. si esta inactiva nunca va a volver a estar activa 1 = activo 0 = inactivo</comment>
             </column>
         </property>
-        <property name="fecha" type="timestamp">
+        <property name="fecha" type="timestamp" insert="false" update="false">
             <column name="fecha" length="19" not-null="true" />
         </property>
         <set name="sucursalSimcards" inverse="true">

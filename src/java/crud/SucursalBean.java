@@ -4,12 +4,15 @@
  */
 package crud;
 
+import dao.CiudadDao;
 import dao.SucursalDao;
+import java.io.Serializable;
 import java.util.List;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
+import model.Ciudad;
 import model.Sucursal;
 
 /**
@@ -18,17 +21,21 @@ import model.Sucursal;
  */
 @ManagedBean(name = "SucursalBean")
 @SessionScoped
-public class SucursalBean
+public class SucursalBean implements Serializable
 {
 
     private Sucursal obj;
     private SucursalDao daoObj;
     private List<Sucursal> listObj;
     private List<Sucursal> listObjFiltro;
+    private Integer idCiudad;
+    private List<Ciudad> listCiudad;
+    private CiudadDao daoCiudad;
 
     public void prepararUpdate(int id)
     {
         obj = daoObj.getOne(id);
+        idCiudad = obj.getCiudad().getIdCiudad();
         if (obj == null)
         {
             System.out.println("esta mierda es null");
@@ -41,6 +48,9 @@ public class SucursalBean
     {
         FacesMessage message;
         //message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Tercero Creado", null);
+        Ciudad ciu = new Ciudad();
+        ciu.setIdCiudad(idCiudad);
+        obj.setCiudad(ciu);
         try
         {
             daoObj.update(obj);
@@ -58,6 +68,10 @@ public class SucursalBean
     {
         FacesMessage message;
         //message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Tercero Creado", null);
+        Ciudad ciu = new Ciudad();
+        ciu.setIdCiudad(idCiudad);
+        obj.setCiudad(ciu);
+
         try
         {
             daoObj.insert(obj);
@@ -75,6 +89,8 @@ public class SucursalBean
     {
         obj = new Sucursal();
         daoObj = new SucursalDao();
+        daoCiudad = new CiudadDao();
+        idCiudad = 0;
         //listTercero= daoTercero.getAll();
     }
 
@@ -100,11 +116,33 @@ public class SucursalBean
 
     public List<Sucursal> getListObj()
     {
+        listObj = daoObj.getAll();
         return listObj;
     }
 
     public void setListObj(List<Sucursal> listObj)
     {
         this.listObj = listObj;
+    }
+
+    public Integer getIdCiudad()
+    {
+        return idCiudad;
+    }
+
+    public void setIdCiudad(Integer idCiudad)
+    {
+        this.idCiudad = idCiudad;
+    }
+
+    public List<Ciudad> getListCiudad()
+    {
+        listCiudad = daoCiudad.getAll();
+        return listCiudad;
+    }
+
+    public void setListCiudad(List<Ciudad> listCiudad)
+    {
+        this.listCiudad = listCiudad;
     }
 }

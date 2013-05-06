@@ -5,6 +5,7 @@
 package crud;
 
 import dao.TipoGastoDao;
+import java.io.Serializable;
 import java.util.List;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
@@ -18,7 +19,7 @@ import model.TipoGasto;
  */
 @ManagedBean(name = "TipoGastoBean")
 @SessionScoped
-public class TipoGastoBean
+public class TipoGastoBean implements Serializable
 {
 
     private TipoGasto obj;

@@ -5,6 +5,7 @@
 package crud;
 
 import dao.CuentasDao;
+import java.io.Serializable;
 import java.util.List;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
@@ -18,7 +19,7 @@ import model.Cuentas;
  */
 @ManagedBean(name = "CuentasBean")
 @SessionScoped
-public class CuentasBean
+public class CuentasBean implements Serializable
 {
 
     private Cuentas obj;

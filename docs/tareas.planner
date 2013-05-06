@@ -17,10 +17,10 @@
         </overridden-day-type>
       </overridden-day-types>
       <days>
-        <day date="20130406" type="day-type" id="0"/>
         <day date="20130413" type="day-type" id="0"/>
-        <day date="20130427" type="day-type" id="0"/>
+        <day date="20130406" type="day-type" id="0"/>
         <day date="20130420" type="day-type" id="0"/>
+        <day date="20130427" type="day-type" id="0"/>
       </days>
       <calendar id="2" name="miCalendario">
         <default-week mon="0" tue="2" wed="2" thu="2" fri="2" sat="0" sun="2"/>
@@ -57,7 +57,7 @@
           <predecessor id="1" predecessor-id="6" type="FS"/>
         </predecessors>
       </task>
-      <task id="8" name="crud Operador" note="" work="28800" start="20130429T170000Z" end="20130430T170000Z" work-start="20130430T080000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
+      <task id="8" name="crud Operador" note="" work="28800" start="20130429T170000Z" end="20130430T170000Z" work-start="20130430T080000Z" percent-complete="90" priority="0" type="normal" scheduling="fixed-work">
         <predecessors>
           <predecessor id="1" predecessor-id="7" type="FS"/>
         </predecessors>

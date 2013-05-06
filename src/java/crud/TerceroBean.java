@@ -5,6 +5,7 @@
 package crud;
 
 import dao.TerceroDao;
+import java.io.Serializable;
 import java.util.List;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
@@ -18,7 +19,7 @@ import model.Tercero;
  */
 @ManagedBean(name = "TerceroBean")
 @SessionScoped
-public class TerceroBean
+public class TerceroBean implements Serializable
 {
     private Tercero objTercero;
     private TerceroDao daoTercero;

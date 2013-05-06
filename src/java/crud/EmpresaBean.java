@@ -5,6 +5,7 @@
 package crud;
 
 import dao.EmpresaDao;
+import java.io.Serializable;
 import java.util.List;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
@@ -18,7 +19,7 @@ import model.Empresa;
  */
 @ManagedBean(name = "EmpresaBean")
 @SessionScoped
-public class EmpresaBean
+public class EmpresaBean implements Serializable
 {
 
     private Empresa objEmpresa;

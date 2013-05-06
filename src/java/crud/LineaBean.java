@@ -7,6 +7,7 @@ package crud;
 import dao.EmpresaDao;
 import dao.EstadoLineaDao;
 import dao.LineaDao;
+import java.io.Serializable;
 import java.util.List;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
@@ -22,7 +23,7 @@ import model.Linea;
  */
 @ManagedBean(name = "LineaBean")
 @SessionScoped
-public class LineaBean
+public class LineaBean implements Serializable
 {
 
     private Integer idEmpresa;

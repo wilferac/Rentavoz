@@ -48,6 +48,12 @@ public class LineaDao
         Query que = se.createQuery("from Linea");
         return que.list();
     }
+    
+    public List<Linea> getFreeLines()
+    {
+        Query que = se.createQuery("FROM Linea as l WHERE NOT EXISTS (FROM Simcard as s WHERE s.linea = l AND s.simEstado = 1)");
+        return que.list();
+    }
 
     public void insert(Linea obj) throws Exception
     {

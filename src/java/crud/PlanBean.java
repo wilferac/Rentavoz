@@ -5,6 +5,7 @@
 package crud;
 
 import dao.PlanDao;
+import java.io.Serializable;
 import java.util.List;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
@@ -18,7 +19,7 @@ import model.Plan;
  */
 @ManagedBean(name = "PlanBean")
 @SessionScoped
-public class PlanBean
+public class PlanBean implements Serializable
 {
 
     private Plan obj;

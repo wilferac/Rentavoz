@@ -5,6 +5,7 @@
 package crud;
 
 import dao.ConvenioDao;
+import java.io.Serializable;
 import java.util.List;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
@@ -18,7 +19,7 @@ import model.Convenio;
  */
 @ManagedBean(name = "ConvenioBean")
 @SessionScoped
-public class ConvenioBean
+public class ConvenioBean implements Serializable
 {
 
     private Convenio obj;

@@ -5,6 +5,7 @@
 package crud;
 
 import dao.OperadorDao;
+import java.io.Serializable;
 import java.util.List;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
@@ -18,7 +19,7 @@ import model.Operador;
  */
 @ManagedBean(name = "OperadorBean")
 @SessionScoped
-public class OperadorBean
+public class OperadorBean implements Serializable
 {
 
     private Operador obj;
